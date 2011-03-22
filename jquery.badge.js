@@ -46,15 +46,17 @@
 
                 var s = "";
 
+                var ul = $("<ul/>").addClass("badgelist");
                 $.each(b, function(i, v) {
                     var achievement = v.achievement;
                     var badge = v.badge;
 
-                    s += achievements[achievement].inst.unlockText(badge);
-                    s += "<br/>\n";
+                    s = achievements[achievement].inst.unlockText(badge);
+                    li = $("<li/>").text(s);
+                    ul = ul.append(li);
                 });
 
-                $(this).html(s);
+                $(this).append(ul);
             });
         },
         /* Return a list of badges unlocked.

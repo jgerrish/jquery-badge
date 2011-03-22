@@ -12,7 +12,7 @@
     $(document).ready(function () {
         awardNewVisitorBadge = function() {
           $('div#new_visitor_badge').twitter_alert({bg_colour: '#9CF',
-                                                    fadeout_time: 1000,
+                                                    fadeout_time: 50000,
                                                     text_colour: '#333'});
         };
 
@@ -38,11 +38,42 @@
         $('div#unlockedbadges').badge('showBadges');
      });
   </script>
+
+  <style type="text/css">
+    body {
+      background: #c0c0c0;
+      margin: 0px
+    }
+    ul.badgelist li {
+      margin: 10px;
+      padding: 10px;
+      list-style-type: none;
+      background: #c0c0e0
+    }
+    div#content {
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      background: #ffffff;
+      height: 100%;
+      padding: 10px;
+    }
+  </style>
 </head>
 
 <body>
-<h1>jQuery Badge Example</h1>
+<div id="content">
+<br/>
+<br/>
+<br/>
+<h1>jQuery Badges!</h1>
 
+Welcome!
+<p>
+This page demonstrates how you can easily add badges and achievements to your
+own website.
+</p>
 <div id="new_visitor_badge" style="display: none">
   <img src="badges/newsite.png" style="vertical-align: middle"/>
   You've unlocked the new visitor badge!
@@ -54,8 +85,10 @@
 </div>
 
 
-Badges you've unlocked:
+<h2>Badges you've unlocked</h3>
 <div id="unlockedbadges">
+</div>
+
 </div>
 
 </body>
