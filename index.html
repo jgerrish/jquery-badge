@@ -1,0 +1,63 @@
+<html>
+<head>
+  <title>jQuery badge</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.json-2.2.min.js"></script>
+  <script type="text/javascript" src="jstorage.js"></script>
+  <script type="text/javascript" src="jquery.badge.js"></script>
+  <script type="text/javascript" src="badges/jquery.badge-randomachievement.js"></script>
+  <script type="text/javascript" src="badges/jquery.badge-firstvisitachievement.js"></script>
+  <script type="text/javascript" src="twitter_alert.js"></script>
+  <script>
+    $(document).ready(function () {
+        awardNewVisitorBadge = function() {
+          $('div#new_visitor_badge').twitter_alert({bg_colour: '#9CF',
+                                                    fadeout_time: 1000,
+                                                    text_colour: '#333'});
+        };
+
+        awardRandomBadge = function() {
+          $('div#random_badge').twitter_alert({bg_colour: '#9CF',
+                                               fadeout_time: 1000,
+                                               text_colour: '#333'});
+        };
+
+        $.fn.badge('init', {
+          achievements: [ [$.fn.badge.FirstVisitAchievement,
+                             { 'badge': awardNewVisitorBadge }],
+                            [$.fn.badge.RandomAchievement,
+                             { 'badge': awardRandomBadge,
+                               'items': [{'item': 'easter egg',
+                                          'probability': 40 }]
+                             }]
+                          ]
+        });
+
+        $.fn.badge('listAchievements');
+
+        $('div#unlockedbadges').badge('showBadges');
+     });
+  </script>
+</head>
+
+<body>
+<h1>jQuery Badge Example</h1>
+
+<div id="new_visitor_badge" style="display: none">
+  <img src="badges/newsite.png" style="vertical-align: middle"/>
+  You've unlocked the new visitor badge!
+</div>
+
+<div id="random_badge" style="display: none">
+  <img src="badges/newitem.png" style="vertical-align: middle"/>
+  You've found a random item!
+</div>
+
+
+Badges you've unlocked:
+<div id="unlockedbadges">
+</div>
+
+</body>
+
+</html>

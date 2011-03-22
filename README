@@ -1,0 +1,85 @@
+jQuery Badge plugin
+
+
+jquery-badge is a jQuery plugin that lets you easily add badges and
+achievements to your website.
+
+The plugin comes with several sample achievements and badges that you can
+immediately begin using.  Developers can add new achievements and badges by
+examining the sample achievements and implementing a few simple methods.
+
+The plugin splits the process of unlocking a badge into two
+components, an Achievement and a Badge.  Achievements are tasks that
+users can complete to earn a Badge.  The system provides several
+public APIs to list and interact with badges and achievements.
+
+
+Installation:
+
+This plugin requires the jStorage local storage plugin:
+http://www.jstorage.info/
+
+Drop the jquery.badge.js file into a publicly accessible location and
+include it in your web page.  The plugin must be initialized with a
+list of achievements.  Each achievement is specified with a two-item
+array.  The first element is the achievement function.  The second
+element is an object containing options for the achievement.
+Different achievements will have different options, but a common one
+is a callback-function called after a badge is unlocked.  Below is an
+example showing a single Achievement.
+
+Example:
+
+    $(document).ready(function () {
+        awardBadge = function() {
+          $('div#new_visitor_badge').twitter_alert({bg_colour: '#9CF',
+                                                    fadeout_time: 1000,
+                                                    text_colour: '#333'});
+        };
+
+        $.fn.badge('init', {
+            achievements: [ [$.fn.badge.FirstVisitAchievement,
+                             { 'badge': awardBadge }]
+                          ]
+        });
+    });
+
+This uses the twitter_alert jQuery plugin by Dave Earley to display
+the unlocked badge.
+
+
+Example achievements and badges:
+
+Two achievements are included with the plugin.  A
+FirstVisitAchievement is unlocked the first time a user visits your
+site.  The RandomAchievement is unlocked randomly with a certain
+probability.  Several different RandomAchievements can be included on
+a site, allowing the user to uncover "items" as they browse the site.
+
+
+Extension
+
+Developers can extend the plugin with new achievements and badges.
+Each achievement must implement the following properties and methods:
+
+Constructor:
+
+The Achievement function is initialized with two parameters.  The
+first parameter is a badge callback function used to display the
+unlocked badge.  The second parameter is an object containing
+achievement-specific options.
+
+name:
+
+Each achievement must provide a name property that identifies the unique name of the Achievement.
+
+unlockText(badge):
+
+Each achievement must provide an unlockText(badge) method that returns
+the unlock text for that achievement.
+
+
+Badge callback
+
+If the conditions for an Achievement are satisfied, the Achievement
+function should call the badge callback function.
